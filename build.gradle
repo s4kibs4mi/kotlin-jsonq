@@ -20,6 +20,8 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+    compile group: 'com.eclipsesource.minimal-json', name: 'minimal-json', version: '0.9.5'
+    testCompile 'junit:junit:4.12'
 }
 
 compileKotlin {
