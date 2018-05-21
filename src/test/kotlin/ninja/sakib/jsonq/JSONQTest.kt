@@ -1,5 +1,7 @@
 package ninja.sakib.jsonq
 
+import com.eclipsesource.json.JsonObject
+import ninja.sakib.jsonq.ext.whereEq
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
@@ -28,8 +30,14 @@ class JSONQTest {
 
     @Test
     fun findArrayElementTest() {
-        val name = jsonq.find("cities.0.name")
+        val name = jsonq.find("users.2.location")
         Assert.assertEquals("First city name doesn't match", "Barishal", name.asString())
+    }
+
+    @Test
+    fun findArrayObjTest() {
+        val obj = jsonq.find("users.5.visits")
+        Assert.assertEquals("First city name doesn't match", true, obj.isArray)
     }
 
     @Test
@@ -42,5 +50,21 @@ class JSONQTest {
     fun findJsonItemTest() {
         val name = jsonq.find("cities.0.name")
         Assert.assertEquals("First city name doesn't match", "Barishal", name.asString())
+    }
+
+    @Test
+    fun WhereEqTest() {
+        val res = jsonq.from("users.5.visits").whereEq("name", "Bandarbar")
+        for (v in res) {
+            println((v as JsonObject).toString())
+        }
+    }
+
+    @Test
+    fun WhereGtTest() {
+        val res = jsonq.from("users").whereEq("id", 3)
+        for (v in res) {
+            println((v as JsonObject).toString())
+        }
     }
 }

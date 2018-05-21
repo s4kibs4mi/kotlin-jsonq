@@ -1,11 +1,9 @@
 package ninja.sakib.jsonq
 
 import com.eclipsesource.json.Json
+import com.eclipsesource.json.JsonArray
 import com.eclipsesource.json.JsonObject
 import com.eclipsesource.json.JsonValue
-import ninja.sakib.jsonq.ext.isDouble
-import ninja.sakib.jsonq.ext.isFloat
-import ninja.sakib.jsonq.ext.isInt
 import java.io.FileInputStream
 import java.io.InputStream
 import java.io.InputStreamReader
@@ -36,15 +34,11 @@ class JSONQ {
         this.primaryObject = Json.parse(InputStreamReader(jsonInputStream)).asObject()
     }
 
-    fun primaryObject(): JsonObject? {
-        return primaryObject
-    }
-
     fun find(key: String): JsonValue {
-        return findInner(primaryObject!!, key)
+        return findValue(primaryObject!!, key)
     }
 
-    private fun findInner(data: JsonValue, path: String): JsonValue {
+    private fun findValue(data: JsonValue, path: String): JsonValue {
         var t = data
         val keys = path.split(".")
         for (k in keys) {
@@ -52,27 +46,27 @@ class JSONQ {
                 t = t.asArray()[k.toInt()]
                 continue
             }
-
-            if (t.isString) {
-                return t
-            }
-            if (t.isBoolean) {
-                return t
-            }
-            if (t.isNumber && t.isInt()) {
-                return t
-            }
-            if (t.isNumber && t.isFloat()) {
-                return t
-            }
-            if (t.isNumber && t.isDouble()) {
-                return t
-            }
-
             if (t.isObject) {
                 t = t.asObject().get(k)
             }
         }
         return t
+    }
+
+    fun from(key: String): JsonArray {
+        val data = findValue(primaryObject!!, key)
+        val res = JsonArray()
+        if (data.isArray.not()) {
+            return res
+        }
+        return data.asArray()
+    }
+
+    fun JSONString(): String {
+        return primaryObject.toString()
+    }
+
+    fun JSON(): JsonObject {
+        return primaryObject!!
     }
 }

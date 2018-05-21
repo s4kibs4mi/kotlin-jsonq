@@ -20,7 +20,7 @@
     {
       "id": 3,
       "name": "Ariful Islam",
-      "location": "Barisal"
+      "location": "Barishal"
     },
     {
       "id": 4,
@@ -33,9 +33,9 @@
       "location": "Gournodi"
     },
     {
-      "id": 6,
+      "id": 5,
       "name": "Musa Jewel",
-      "location": "Barisal",
+      "location": "Barishal",
       "visits": [
         {
           "name": "Sylhet",

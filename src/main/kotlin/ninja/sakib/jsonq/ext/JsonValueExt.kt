@@ -15,7 +15,7 @@ fun JsonValue.isInt(): Boolean {
         this.asInt()
         return true
     } catch (e: Exception) {
-        e.printStackTrace()
+
     }
     return false
 }
