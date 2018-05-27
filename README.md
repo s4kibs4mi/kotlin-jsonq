@@ -210,12 +210,21 @@ Following API examples are shown based on the sample JSON data given above. To g
 ### `JSONQ()`
 
 Constructor for initializing JSONQ object with parameter `JSONObject`, `String`, `ByteArray`, `InputStream`. Use which one you are flexible with.
+```kotlin
+val inputStream = Thread.currentThread().contextClassLoader.getResourceAsStream("data.json")
+jsonq = JSONQ(inputStream)
+```
 
 ### `find(path)`
 
 * `path` -- the path hierarchy of the data you want to find.
 
 This method will return the JSONValue from this json path
+
+```kotlin
+val data = jsonq.find("users.2.location")
+println(data)
+```
 
 ### `from(path)`
 
