@@ -51,13 +51,12 @@ fun JsonValue.isLong(): Boolean {
 }
 
 fun JsonValue.isCountable(key: String, v: Any, operator: String): Boolean {
-    val it = this
+    var obj = this
+    if (this.isObject) {
+        obj = this.asObject().get(key)
+    }
     when (operator) {
         EQ -> {
-            if (it.isObject.not()) {
-                return false
-            }
-            val obj = it.asObject().get(key)
             if (obj.isString && v is String && obj.asString() == v) {
                 return true
             } else if (obj.isInt() && v is Int && obj.asInt() == v) {
@@ -71,10 +70,6 @@ fun JsonValue.isCountable(key: String, v: Any, operator: String): Boolean {
             }
         }
         LESS_EQ -> {
-            if (it.isObject.not()) {
-                return false
-            }
-            val obj = it.asObject().get(key)
             if (obj.isString && v is String && obj.asString() <= v) {
                 return true
             } else if (obj.isInt() && v is Int && obj.asInt() <= v) {
@@ -88,10 +83,6 @@ fun JsonValue.isCountable(key: String, v: Any, operator: String): Boolean {
             }
         }
         GREATER_EQ -> {
-            if (it.isObject.not()) {
-                return false
-            }
-            val obj = it.asObject().get(key)
             if (obj.isString && v is String && obj.asString() >= v) {
                 return true
             } else if (obj.isInt() && v is Int && obj.asInt() >= v) {
@@ -105,10 +96,6 @@ fun JsonValue.isCountable(key: String, v: Any, operator: String): Boolean {
             }
         }
         GREATER -> {
-            if (it.isObject.not()) {
-                return false
-            }
-            val obj = it.asObject().get(key)
             if (obj.isString && v is String && obj.asString() > v) {
                 return true
             } else if (obj.isInt() && v is Int && obj.asInt() > v) {
@@ -122,10 +109,6 @@ fun JsonValue.isCountable(key: String, v: Any, operator: String): Boolean {
             }
         }
         LESS -> {
-            if (it.isObject.not()) {
-                return false
-            }
-            val obj = it.asObject().get(key)
             if (obj.isString && v is String && obj.asString() < v) {
                 return true
             } else if (obj.isInt() && v is Int && obj.asInt() < v) {
@@ -139,10 +122,6 @@ fun JsonValue.isCountable(key: String, v: Any, operator: String): Boolean {
             }
         }
         NOT_EQ -> {
-            if (it.isObject.not()) {
-                return false
-            }
-            val obj = it.asObject().get(key)
             if (obj.isString && v is String && obj.asString() != v) {
                 return true
             } else if (obj.isInt() && v is Int && obj.asInt() != v) {
@@ -160,11 +139,10 @@ fun JsonValue.isCountable(key: String, v: Any, operator: String): Boolean {
 }
 
 fun JsonValue.findSuffix(key: String, v: Any): Boolean {
-    val it = this
-    if (it.isObject.not()) {
-        return false
+    var obj = this
+    if (this.isObject) {
+        obj = this.asObject().get(key)
     }
-    val obj = it.asObject().get(key)
     if (obj.isString && v is String) {
         return obj.asString().endsWith(v, true)
     }
@@ -172,11 +150,10 @@ fun JsonValue.findSuffix(key: String, v: Any): Boolean {
 }
 
 fun JsonValue.findPrefix(key: String, v: Any): Boolean {
-    val it = this
-    if (it.isObject.not()) {
-        return false
+    var obj = this
+    if (this.isObject) {
+        obj = this.asObject().get(key)
     }
-    val obj = it.asObject().get(key)
     if (obj.isString && v is String) {
         return obj.asString().startsWith(v, true)
     }
@@ -184,11 +161,10 @@ fun JsonValue.findPrefix(key: String, v: Any): Boolean {
 }
 
 fun JsonValue.findMatch(key: String, v: Any): Boolean {
-    val it = this
-    if (it.isObject.not()) {
-        return false
+    var obj = this
+    if (this.isObject) {
+        obj = this.asObject().get(key)
     }
-    val obj = it.asObject().get(key)
     if (obj.isString && v is String) {
         return obj.asString().contains(v, true)
     }

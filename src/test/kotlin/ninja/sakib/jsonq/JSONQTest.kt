@@ -31,7 +31,7 @@ class JSONQTest {
     @Test
     fun findArrayElementTest() {
         val name = jsonq.find("users.2.location")
-        Assert.assertEquals("First city name doesn't match", "Barishal", name.asString())
+        Assert.assertEquals("First city name doesn't match", "Barisal", name.asString())
     }
 
     @Test
@@ -136,8 +136,8 @@ class JSONQTest {
 
     @Test
     fun Sum2() {
-        val res = jsonq.from("arr").sum("")
-        Assert.assertEquals(10, res.toInt())
+        val res = jsonq.from("arr").whereGe("", 2).whereLe("", 3).sum("")
+        Assert.assertEquals(5, res.toInt())
     }
 
     @Test
