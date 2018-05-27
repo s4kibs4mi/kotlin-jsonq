@@ -179,13 +179,16 @@ Following API examples are shown based on the sample JSON data given above. To g
 
 **List of API:**
 
+#### ```JSONQ```
+
 * [JSONQ(json: JsonObject)](#)
-* [File](#file)
-* [JSONString](#jsonstring)
-* [Reader](#reader)
-* [Get](#get)
-* [Find](#find)
-* [From](#from)
+* [JSONQ(jsonPath: String)](#)
+* [JSONQ(jsonData: ByteArray)](#)
+* [JSONQ(jsonInputStream: InputStream)](#)
+* [JSONString(): String](#)
+* [JSON(): JsonObject](#)
+* [find(path: String): JsonValue](#find)
+* [from](#from)
 * [Where](#wherekey-op-val)
 * [OrWhere](#orwherekey-op-val)
 * [WhereIn](#whereinkey-val)

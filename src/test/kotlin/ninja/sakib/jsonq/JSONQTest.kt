@@ -1,7 +1,7 @@
 package ninja.sakib.jsonq
 
 import com.eclipsesource.json.JsonObject
-import ninja.sakib.jsonq.ext.whereEq
+import ninja.sakib.jsonq.ext.*
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
@@ -62,9 +62,84 @@ class JSONQTest {
 
     @Test
     fun WhereGtTest() {
-        val res = jsonq.from("users").whereEq("id", 3)
+        val res = jsonq.from("users").whereGt("id", 3)
         for (v in res) {
             println((v as JsonObject).toString())
         }
+    }
+
+    @Test
+    fun WhereLtTest() {
+        val res = jsonq.from("users").whereLt("id", 3)
+        for (v in res) {
+            println((v as JsonObject).toString())
+        }
+    }
+
+    @Test
+    fun WhereLeTest() {
+        val res = jsonq.from("users").whereLe("id", 3)
+        for (v in res) {
+            println((v as JsonObject).toString())
+        }
+    }
+
+    @Test
+    fun WhereGeTest() {
+        val res = jsonq.from("users").whereGe("id", 3)
+        for (v in res) {
+            println((v as JsonObject).toString())
+        }
+    }
+
+    @Test
+    fun WhereHasSuffix() {
+        val res = jsonq.from("users").hasSuffix("name", "Sumi")
+        for (v in res) {
+            println((v as JsonObject).toString())
+        }
+        Assert.assertNotEquals(0, res.size)
+    }
+
+    @Test
+    fun WhereHasPrefix() {
+        val res = jsonq.from("users").hasPrefix("name", "Johura")
+        for (v in res) {
+            println((v as JsonObject).toString())
+        }
+        Assert.assertNotEquals(0, res.size)
+    }
+
+    @Test
+    fun WhereContains() {
+        val res = jsonq.from("users").contains("name", "Su")
+        for (v in res) {
+            println((v as JsonObject).toString())
+        }
+        Assert.assertNotEquals(0, res.size)
+    }
+
+    @Test
+    fun Sum() {
+        val res = jsonq.from("arr").sum()
+        Assert.assertEquals(10, res.toInt())
+    }
+
+    @Test
+    fun Min() {
+        val res = jsonq.from("arr").min()
+        Assert.assertEquals(1, res.asInt())
+    }
+
+    @Test
+    fun Max() {
+        val res = jsonq.from("arr").max()
+        Assert.assertEquals(4, res.asInt())
+    }
+
+    @Test
+    fun Avg() {
+        val res = jsonq.from("arr").avg()
+        Assert.assertEquals(2.5, res.asDouble(), 0.0)
     }
 }
