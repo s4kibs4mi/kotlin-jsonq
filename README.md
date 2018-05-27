@@ -18,7 +18,7 @@ allprojects {
 And
 ```gradle
 dependencies {
-    implementation 'ninja.sakib:kotlin-jsonq:v0.1'
+    implementation 'ninja.sakib:kotlin-jsonq:v0.2'
 }
 ```
 
