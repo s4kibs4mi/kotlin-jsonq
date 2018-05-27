@@ -181,60 +181,43 @@ Following API examples are shown based on the sample JSON data given above. To g
 
 #### ```JSONQ```
 
-* [JSONQ(json: JsonObject)](#)
-* [JSONQ(jsonPath: String)](#)
-* [JSONQ(jsonData: ByteArray)](#)
-* [JSONQ(jsonInputStream: InputStream)](#)
+* [JSONQ(json: JsonObject)](#JSONQ)
+* [JSONQ(jsonPath: String)](#JSONQ)
+* [JSONQ(jsonData: ByteArray)](#JSONQ)
+* [JSONQ(jsonInputStream: InputStream)](#JSONQ)
 * [JSONString(): String](#)
 * [JSON(): JsonObject](#)
 * [find(path: String): JsonValue](#find)
-* [from](#from)
-* [Where](#wherekey-op-val)
-* [OrWhere](#orwherekey-op-val)
-* [WhereIn](#whereinkey-val)
-* [WhereNotIn](#wherenotinkey-val)
-* [WhereNil](#wherenilkey)
-* [WhereNotNil](#wherenotnilkey)
-* [WhereEqual](#whereequalkey)
-* [WhereNotEqual](#wherenotequalkey)
-* [WhereStartsWith](#wherestartswithkey-val)
-* [WhereEndsWith](#whereendswithkey-val)
-* [WhereContains](#wherecontainskey-val)
-* [WhereStrictContains](#wherestrictcontainskey-val)
-* [Sum](#sumproperty)
-* [Count](#count)
-* [Max](#maxproperty)
-* [Min](#minproperty)
-* [Avg](#avgproperty)
+* [from(path: String)](#from)
+* [eq](#eq)
+* [gt](#gt)
+* [ge](#ge)
+* [lt](#lt)
+* [le](#le)
+* [sum](#sum)
+* [max](#max)
+* [min](#min)
+* [avg](#avg)
+* [hasSuffix](#hasSuffix)
+* [hasPrefix](#hasPrefix)
+* [contains](#contains)
 * [First](#first)
 * [Last](#last)
 * [Nth](#nthindex)
 * [GroupBy](#groupbyproperty)
 * [Sort](#sortorder)
-* [Reset](#resetdata)
-* [Only](#only)
-* [Pluck](#pluck)
 
-### `Get()`
+### `JSONQ()`
 
-This method will execute queries and will return the resulted data. You need to call it finally after using some query methods. Details can be found in other API examples.
+Constructor for initializing JSONQ object with parameter `JSONObject`, `String`, `ByteArray`, `InputStream`. Use which one you are flexible with.
 
-### `Find(path)`
+### `find(path)`
 
 * `path` -- the path hierarchy of the data you want to find.
 
-You don't need to call `Get()` method after this. Because this method will fetch and return the data by itself.
+This method will return the JSONValue from this json path
 
-**caveat:** You can't chain further query methods after it. If you need that, you should use `From()` method.
-
-**example:**
-
-Let's say you want to get the value of _'items'_ property of your JSON Data. You can do it like this:
-
-
-If you want to traverse to more deep in hierarchy, you can do it like:
-
-### `From(path)`
+### `from(path)`
 
 * `path` (optional) -- the path hierarchy of the data you want to start query from.
 
