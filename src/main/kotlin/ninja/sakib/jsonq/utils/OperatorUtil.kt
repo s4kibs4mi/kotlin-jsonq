@@ -1,4 +1,4 @@
-package ninja.sakib.jsonq
+package ninja.sakib.jsonq.utils
 
 /**
  * := Coded with love by Sakib Sami on 5/27/18.

@@ -121,25 +121,31 @@ class JSONQTest {
 
     @Test
     fun Sum() {
-        val res = jsonq.from("arr").sum()
+        val res = jsonq.from("products").sum("price")
+        Assert.assertEquals(448000, res.toInt())
+    }
+
+    @Test
+    fun Sum2() {
+        val res = jsonq.from("arr").sum("")
         Assert.assertEquals(10, res.toInt())
     }
 
     @Test
     fun Min() {
-        val res = jsonq.from("arr").min()
-        Assert.assertEquals(1, res.asInt())
+        val res = jsonq.from("products").min("price")
+        Assert.assertEquals(12000.2, res.asDouble(), 0.0)
     }
 
     @Test
     fun Max() {
-        val res = jsonq.from("arr").max()
-        Assert.assertEquals(4, res.asInt())
+        val res = jsonq.from("products").max("price")
+        Assert.assertEquals(150000.1, res.asDouble(), 0.0)
     }
 
     @Test
     fun Avg() {
-        val res = jsonq.from("arr").avg()
+        val res = jsonq.from("arr").avg("")
         Assert.assertEquals(2.5, res.asDouble(), 0.0)
     }
 }

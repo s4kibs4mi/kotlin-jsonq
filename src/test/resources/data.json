@@ -65,35 +65,35 @@
       "city": null,
       "name": "macbook pro",
       "cat": 2,
-      "price": 150000
+      "price": 150000.1
     },
     {
       "id": 3,
       "city": "dhk",
       "name": "Redmi 3S Prime",
       "cat": 1,
-      "price": 12000
+      "price": 12000.2
     },
     {
       "id": 4,
       "city": null,
       "name": "Redmi 4X",
       "cat": 1,
-      "price": 15000
+      "price": 15000.0
     },
     {
       "id": 5,
       "city": "bsl",
       "name": "macbook air",
       "cat": 2,
-      "price": 110000
+      "price": 110000.00
     },
     {
       "id": 6,
       "city": null,
       "name": "macbook air 1",
       "cat": 2,
-      "price": 81000
+      "price": 81000.00
     }
   ],
   "cities": [

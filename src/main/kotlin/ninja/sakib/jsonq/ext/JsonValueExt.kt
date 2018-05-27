@@ -1,7 +1,7 @@
 package ninja.sakib.jsonq.ext
 
 import com.eclipsesource.json.JsonValue
-import ninja.sakib.jsonq.*
+import ninja.sakib.jsonq.utils.*
 import java.lang.Exception
 
 /**
@@ -16,7 +16,6 @@ fun JsonValue.isInt(): Boolean {
         this.asInt()
         return true
     } catch (e: Exception) {
-
     }
     return false
 }
