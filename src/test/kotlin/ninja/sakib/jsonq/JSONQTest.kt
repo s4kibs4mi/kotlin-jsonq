@@ -101,8 +101,7 @@ class JSONQTest {
         for (v in res) {
             println((v as JsonObject).toString())
         }
-        Assert.assertNotEquals(0, res.size)
-        println(res)
+        println(res.get())
     }
 
     @Test
@@ -111,7 +110,6 @@ class JSONQTest {
         for (v in res) {
             println((v as JsonObject).toString())
         }
-        Assert.assertNotEquals(0, res.size)
     }
 
     @Test
@@ -120,7 +118,14 @@ class JSONQTest {
         for (v in res) {
             println((v as JsonObject).toString())
         }
-        Assert.assertNotEquals(0, res.size)
+    }
+
+    @Test
+    fun QueryChain() {
+        val res = jsonq.from("users")
+        println(res.whereGe("id", 3))
+        println(res.whereGe("id", 3).contains("location", "Barisal"))
+        println(res.whereGe("id", 3).contains("name", "Is"))
     }
 
     @Test

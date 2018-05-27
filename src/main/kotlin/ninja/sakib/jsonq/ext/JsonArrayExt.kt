@@ -12,67 +12,88 @@ import ninja.sakib.jsonq.utils.*
  * := Coffee : Dream : Code
  */
 
-fun JsonArray.whereGt(key: String, v: Any): MutableList<Any> {
-    val res = mutableListOf<Any>()
-    this
-            .filter { it -> it.isCountable(v, key, GREATER) }
-            .mapTo(res) { it -> it.asObject() }
+fun JsonArray.get(): MutableList<Any> {
+    return this.toMutableList()
+}
+
+fun JsonArray.whereGt(key: String, v: Any): JsonArray {
+    val res = JsonArray()
+    for (it in this) {
+        if (it.isCountable(key, v, GREATER)) {
+            res.add(it)
+        }
+    }
     return res
 }
 
-fun JsonArray.whereLt(key: String, v: Any): MutableList<Any> {
-    val res = mutableListOf<Any>()
-    this
-            .filter { it -> it.isCountable(v, key, LESS) }
-            .mapTo(res) { it -> it.asObject() }
+fun JsonArray.whereLt(key: String, v: Any): JsonArray {
+    val res = JsonArray()
+    for (it in this) {
+        if (it.isCountable(key, v, LESS)) {
+            res.add(it)
+        }
+    }
     return res
 }
 
-fun JsonArray.whereLe(key: String, v: Any): MutableList<Any> {
-    val res = mutableListOf<Any>()
-    this
-            .filter { it -> it.isCountable(v, key, LESS_EQ) }
-            .mapTo(res) { it -> it.asObject() }
+fun JsonArray.whereLe(key: String, v: Any): JsonArray {
+    val res = JsonArray()
+    for (it in this) {
+        if (it.isCountable(key, v, LESS_EQ)) {
+            res.add(it)
+        }
+    }
     return res
 }
 
-fun JsonArray.whereGe(key: String, v: Any): MutableList<Any> {
-    val res = mutableListOf<Any>()
-    this
-            .filter { it -> it.isCountable(v, key, GREATER_EQ) }
-            .mapTo(res) { it -> it.asObject() }
+fun JsonArray.whereGe(key: String, v: Any): JsonArray {
+    val res = JsonArray()
+    for (it in this) {
+        if (it.isCountable(key, v, GREATER_EQ)) {
+            res.add(it)
+        }
+    }
+    return res
+
+}
+
+fun JsonArray.whereEq(key: String, v: Any): JsonArray {
+    val res = JsonArray()
+    for (it in this) {
+        if (it.isCountable(key, v, EQ)) {
+            res.add(it)
+        }
+    }
     return res
 }
 
-fun JsonArray.whereEq(key: String, v: Any): MutableList<Any> {
-    val res = mutableListOf<Any>()
-    this
-            .filter { it -> it.isCountable(v, key, EQ) }
-            .mapTo(res) { it -> it.asObject() }
+fun JsonArray.hasSuffix(key: String, v: Any): JsonArray {
+    val res = JsonArray()
+    for (it in this) {
+        if (it.findSuffix(key, v)) {
+            res.add(it)
+        }
+    }
     return res
 }
 
-fun JsonArray.hasSuffix(key: String, v: Any): MutableList<Any> {
-    val res = mutableListOf<Any>()
-    this
-            .filter { it -> it.findSuffix(v, key) }
-            .mapTo(res) { it -> it.asObject() }
+fun JsonArray.hasPrefix(key: String, v: Any): JsonArray {
+    val res = JsonArray()
+    for (it in this) {
+        if (it.findPrefix(key, v)) {
+            res.add(it)
+        }
+    }
     return res
 }
 
-fun JsonArray.hasPrefix(key: String, v: Any): MutableList<Any> {
-    val res = mutableListOf<Any>()
-    this
-            .filter { it -> it.findPrefix(v, key) }
-            .mapTo(res) { it -> it.asObject() }
-    return res
-}
-
-fun JsonArray.contains(key: String, v: Any): MutableList<Any> {
-    val res = mutableListOf<Any>()
-    this
-            .filter { it -> it.findMatch(v, key) }
-            .mapTo(res) { it -> it.asObject() }
+fun JsonArray.contains(key: String, v: Any): JsonArray {
+    val res = JsonArray()
+    for (it in this) {
+        if (it.findMatch(key, v)) {
+            res.add(it)
+        }
+    }
     return res
 }
 

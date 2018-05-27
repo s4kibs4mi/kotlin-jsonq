@@ -50,7 +50,7 @@ fun JsonValue.isLong(): Boolean {
     return false
 }
 
-fun JsonValue.isCountable(v: Any, key: String, operator: String): Boolean {
+fun JsonValue.isCountable(key: String, v: Any, operator: String): Boolean {
     val it = this
     when (operator) {
         EQ -> {
@@ -159,7 +159,7 @@ fun JsonValue.isCountable(v: Any, key: String, operator: String): Boolean {
     return false
 }
 
-fun JsonValue.findSuffix(v: Any, key: String): Boolean {
+fun JsonValue.findSuffix(key: String, v: Any): Boolean {
     val it = this
     if (it.isObject.not()) {
         return false
@@ -171,7 +171,7 @@ fun JsonValue.findSuffix(v: Any, key: String): Boolean {
     return false
 }
 
-fun JsonValue.findPrefix(v: Any, key: String): Boolean {
+fun JsonValue.findPrefix(key: String, v: Any): Boolean {
     val it = this
     if (it.isObject.not()) {
         return false
@@ -183,7 +183,7 @@ fun JsonValue.findPrefix(v: Any, key: String): Boolean {
     return false
 }
 
-fun JsonValue.findMatch(v: Any, key: String): Boolean {
+fun JsonValue.findMatch(key: String, v: Any): Boolean {
     val it = this
     if (it.isObject.not()) {
         return false
