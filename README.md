@@ -197,13 +197,7 @@ Result,
   {
     "name": "Bandarbar",
     "year": 2014
-  },
-  [
-    {
-      "name": "Bandarbar",
-      "year": 2014
-    }
-  ]
+  }
 ]
 ```
 
