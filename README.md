@@ -216,6 +216,21 @@ Result,
 ]
 ```
 
+- [x] Query Chaining
+```kotlin
+val res = jsonq.from("users").whereGe("id", 3).whereEq("location", "Barisal").contains("name", "Is")
+```
+Result,
+```json
+[
+  {
+    "id": 3,
+    "name": "Ariful Islam",
+    "location": "Barisal"
+  }
+]
+```
+
 ## TODO
 
 - [ ] Add missing methods

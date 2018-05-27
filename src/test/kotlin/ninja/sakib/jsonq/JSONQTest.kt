@@ -123,9 +123,7 @@ class JSONQTest {
     @Test
     fun QueryChain() {
         val res = jsonq.from("users")
-        println(res.whereGe("id", 3))
-        println(res.whereGe("id", 3).contains("location", "Barisal"))
-        println(res.whereGe("id", 3).contains("name", "Is"))
+        println(res.whereGe("id", 3).whereEq("location", "Barisal").contains("name", "Is"))
     }
 
     @Test
