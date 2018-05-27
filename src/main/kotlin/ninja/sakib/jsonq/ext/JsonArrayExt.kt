@@ -145,6 +145,6 @@ fun JsonArray.max(key: String): JsonValue {
     return max
 }
 
-fun JsonArray.avg(key: String): JsonValue {
-    return Json.value(this.sum(key) / this.size())
+fun JsonArray.avg(key: String): Double {
+    return this.sum(key) / this.size()
 }

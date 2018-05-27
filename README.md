@@ -23,8 +23,6 @@ dependencies {
 ```
 
 ### Usage
-You can start Query your data using the various query methods such as **Find**, **Where**, **OrWhere**, **WhereIn**, **WhereStartsWith**, **WhereEndsWith**, **WhereContains** and so on. Also you can aggregate your data after query using **Sum**, **Count**, **GroupBy**, **Max**, **Min** etc.
-
 Let's see a quick example:
 
 <details><summary>Sample data (data.json)</summary>
@@ -96,35 +94,35 @@ Let's see a quick example:
       "city": null,
       "name": "macbook pro",
       "cat": 2,
-      "price": 150000
+      "price": 150000.1
     },
     {
       "id": 3,
       "city": "dhk",
       "name": "Redmi 3S Prime",
       "cat": 1,
-      "price": 12000
+      "price": 12000.1
     },
     {
       "id": 4,
       "city": null,
       "name": "Redmi 4X",
       "cat": 1,
-      "price": 15000
+      "price": 15000.1
     },
     {
       "id": 5,
       "city": "bsl",
       "name": "macbook air",
       "cat": 2,
-      "price": 110000
+      "price": 110000.00
     },
     {
       "id": 6,
       "city": null,
       "name": "macbook air 1",
       "cat": 2,
-      "price": 81000
+      "price": 81000.2
     }
   ],
   "cities": [
@@ -159,87 +157,55 @@ Let's see a quick example:
 ```
 </details>
 
-**Example:**
-```kotlin
-val inputStream = Thread.currentThread().contextClassLoader.getResourceAsStream("data.json")
-val jsonq = JSONQ(inputStream)
-val name = jsonq.find("users.2.location")
-```
-**Output:**
-```
-Barishal
-```
+### Examples
 
-Let's explore the full API to see what else magic this library can do for you.
-Shall we?
-
-## API
-
-Following API examples are shown based on the sample JSON data given above. To get a better idea of the examples see that JSON data first.
-
-**List of API:**
-
-#### ```JSONQ```
-
-* [JSONQ(json: JsonObject)](#JSONQ)
-* [JSONQ(jsonPath: String)](#JSONQ)
-* [JSONQ(jsonData: ByteArray)](#JSONQ)
-* [JSONQ(jsonInputStream: InputStream)](#JSONQ)
-* [JSONString(): String](#)
-* [JSON(): JsonObject](#)
-* [find(path: String): JsonValue](#find)
-* [from(path: String)](#from)
-* [eq](#eq)
-* [gt](#gt)
-* [ge](#ge)
-* [lt](#lt)
-* [le](#le)
-* [sum](#sum)
-* [max](#max)
-* [min](#min)
-* [avg](#avg)
-* [hasSuffix](#hasSuffix)
-* [hasPrefix](#hasPrefix)
-* [contains](#contains)
-* [First](#first)
-* [Last](#last)
-* [Nth](#nthindex)
-* [GroupBy](#groupbyproperty)
-* [Sort](#sortorder)
-
-### `JSONQ()`
-
-Constructor for initializing JSONQ object with parameter `JSONObject`, `String`, `ByteArray`, `InputStream`. Use which one you are flexible with.
+- [x] Initialization,
 ```kotlin
 val inputStream = Thread.currentThread().contextClassLoader.getResourceAsStream("data.json")
 jsonq = JSONQ(inputStream)
 ```
 
-### `find(path)`
-
-* `path` -- the path hierarchy of the data you want to find.
-
-This method will return the JSONValue from this json path
-
+- [x] find,
 ```kotlin
-val data = jsonq.find("users.2.location")
-println(data)
+val obj = jsonq.find("users.5.visits")
+```
+Result,
+```json
+[
+  {
+    "name": "Sylhet",
+    "year": 2011
+  },
+  {
+    "name": "Cox's Bazar",
+    "year": 2012
+  },
+  {
+    "name": "Bandarbar",
+    "year": 2014
+  }
+]
 ```
 
-### `from(path)`
-
-* `path` (optional) -- the path hierarchy of the data you want to start query from.
-
-By default, query would be started from the root of the JSON Data you've given. If you want to first move to a nested path hierarchy of the data from where you want to start your query, you would use this method. Skipping the `path` parameter or giving **'.'** as parameter will also start query from the root Data.
-
-Difference between this method and `Find()` is that, `Find()` method will return the data from the given path hierarchy. On the other hand, this method will return the Object instance, so that you can further chain query methods after it.
-
-**Example:**
-
-Let's say you want to start query over the values of _'items'_ property of your Json Data. You can do it like this:
-
-
-If you want to traverse to more deep in hierarchy, you can do it like:
+- [x] whereEq,
+```kotlin
+val res = jsonq.from("users.5.visits").whereEq("name", "Bandarbar")
+```
+Result,
+```json
+[
+  {
+    "name": "Bandarbar",
+    "year": 2014
+  },
+  [
+    {
+      "name": "Bandarbar",
+      "year": 2014
+    }
+  ]
+]
+```
 
 ## TODO
 

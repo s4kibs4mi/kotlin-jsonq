@@ -38,6 +38,7 @@ class JSONQTest {
     fun findArrayObjTest() {
         val obj = jsonq.find("users.5.visits")
         Assert.assertEquals("First city name doesn't match", true, obj.isArray)
+        println(obj)
     }
 
     @Test
@@ -58,6 +59,7 @@ class JSONQTest {
         for (v in res) {
             println((v as JsonObject).toString())
         }
+        println(res)
     }
 
     @Test
@@ -66,6 +68,7 @@ class JSONQTest {
         for (v in res) {
             println((v as JsonObject).toString())
         }
+        println(res)
     }
 
     @Test
@@ -146,6 +149,6 @@ class JSONQTest {
     @Test
     fun Avg() {
         val res = jsonq.from("arr").avg("")
-        Assert.assertEquals(2.5, res.asDouble(), 0.0)
+        Assert.assertEquals(2.5, res, 0.0)
     }
 }
