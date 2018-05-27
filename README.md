@@ -1,6 +1,6 @@
 kotlin-jsonq
 ===============
-[![License: CC0-1.0](https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg)](https://github.com/s4kibs4mi/kotin-jsonq/blob/master/LICENSE)
+[![](https://jitpack.io/v/ninja.sakib/kotlin-jsonq.svg)](https://jitpack.io/#ninja.sakib/kotlin-jsonq) [![License: CC0-1.0](https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg)](https://github.com/s4kibs4mi/kotin-jsonq/blob/master/LICENSE)
 
 A simple Kotlin library to Query over JSON Data
 
