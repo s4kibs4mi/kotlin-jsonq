@@ -102,6 +102,7 @@ class JSONQTest {
             println((v as JsonObject).toString())
         }
         Assert.assertNotEquals(0, res.size)
+        println(res)
     }
 
     @Test

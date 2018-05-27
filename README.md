@@ -201,6 +201,21 @@ Result,
 ]
 ```
 
+- [x] hasSuffix,
+```kotlin
+val res = jsonq.from("users").hasSuffix("name", "Sumi")
+```
+Result,
+```json
+[
+  {
+    "id": 1,
+    "name": "Johura Akter Sumi",
+    "location": "Barisal"
+  }
+]
+```
+
 ## TODO
 
 - [ ] Add missing methods
