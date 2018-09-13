@@ -2,6 +2,7 @@ package ninja.sakib.jsonq.ext
 
 import com.eclipsesource.json.Json
 import com.eclipsesource.json.JsonArray
+import com.eclipsesource.json.JsonObject
 import com.eclipsesource.json.JsonValue
 import ninja.sakib.jsonq.utils.*
 
@@ -169,3 +170,24 @@ fun JsonArray.max(key: String): JsonValue {
 fun JsonArray.avg(key: String): Double {
     return this.sum(key) / this.size()
 }
+
+fun JsonArray.count(): Int {
+    return size()
+}
+
+fun JsonArray.select(vararg key: String): JsonArray {
+    val res = JsonArray()
+    for (j in this) {
+        val jObject = j as JsonObject
+        val json = JsonObject()
+        for (k in key) {
+            val v = jObject.get(k)
+            if (v != null) {
+                json.add(k, v)
+            }
+        }
+        res.add(json)
+    }
+    return res
+}
+

@@ -7,7 +7,6 @@ package ninja.sakib.jsonq.ext
  * := Coffee : Dream : Code
  */
 
-
 fun String.isInt(): Boolean {
     return this.toIntOrNull() != null
 }
